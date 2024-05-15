@@ -1,0 +1,32 @@
+function Navbar(){
+    return(
+    <>
+        <div className="z-30">
+  <div className="h-8vh flex justify-between lg:py-3 px-10 py-10 border-b">
+    <div className="flex items-center flex-l">
+      <h2 className="text-3xl font-bold text-black font-['Denk_One']">Y2M Holidays</h2>
+    </div>
+    <div className="flex items-center">
+      <select className="block w-full bg-white text-black font-['Denk_One'] py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+        <option>Menu</option>
+        <option value="1">Option 1</option>
+      </select>
+      <select className="block w-full bg-white text-black font-['Denk_One'] py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+        <option>Cuisine</option>
+        <option value="1">Option 1</option>
+      </select>
+      <select className="block w-full bg-white text-black font-['Denk_One'] py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+        <option>Rating</option>
+        <option value="1">Option 1</option>
+      </select>
+      <select className="block w-full bg-white text-black font-['Denk_One'] py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+        <option>Location</option>
+        <option value="1">Option 1</option>
+      </select>
+    </div>
+  </div>
+</div>
+    </>
+    )
+}
+export default Navbar;
