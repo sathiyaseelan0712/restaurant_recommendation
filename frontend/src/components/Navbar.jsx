@@ -9,7 +9,8 @@ function Navbar(){
     <div className="flex items-center">
       <select className="block w-full  text-black font-['Denk_One'] py-2 px-4 pr-8 focus:outline-none focus:bg-purple-200 bg-purple-200">
         <option>Menu</option>
-        <option value="1">Option 1</option>
+        <option value="1">lubch</option>
+        <option value="1">breakfast</option>
       </select>
       <select className="block w-full  text-black font-['Denk_One'] py-2 px-4 pr-8 focus:outline-none focus:bg-purple-200 bg-purple-200">
         <option>Cuisine</option>
