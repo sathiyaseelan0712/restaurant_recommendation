@@ -1,5 +1,5 @@
 const Details = require('../models/restaraunt');
- 
+
 module.exports.filterrestaraunt = async (req, res) => {
     console.log("request body is", req.body);
     try {
@@ -8,7 +8,7 @@ module.exports.filterrestaraunt = async (req, res) => {
         if (location) {
             query.location = location;
         }
- 
+
         if (rating?.length > 0) {
             if (rating == 3) {
                 query.rating = { $gte: 3, $lte: 5 };
@@ -16,12 +16,15 @@ module.exports.filterrestaraunt = async (req, res) => {
                 query.rating = { $gte: 4, $lte: 5 };
             }
         }
- 
+
         if (cuisines?.length > 0) {
             query.cuisines = { $in: cuisines };
         }
- 
-        const restaurants = await RestaurantModel.find(query);
+        if (menu?.length > 0) {
+            query.menu = { $in: menu };
+        }
+
+        const restaurants = await Details.find(query);
         if (restaurants.length > 0) {
             res.json({ success: true, data: restaurants });
         } else {
@@ -42,10 +45,10 @@ module.exports.getAllrestaraunt = async (req, res) => {
     }
 }
 
-module.exports.getrestarauntById = async(req, res) => {
+module.exports.getrestarauntById = async (req, res) => {
     const { id } = req.params;
     try {
-        const todo =await Details.findById(id);
+        const todo = await Details.findById(id);
         if (todo) {
             res.status(200).send({ todo })
         }
@@ -86,19 +89,19 @@ module.exports.updaterestaraunt = async (req, res) => {
     }
 };
 
-module.exports.deleterestaraunt = async(req, res) => {
-    const {id}=req.params;
-    try{
-        const todo = await Details.findByIdAndDelete(id,req.body);
-        if(todo){
-            res.status(200).send({msg:"Details deleted successfully"});
+module.exports.deleterestaraunt = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const todo = await Details.findByIdAndDelete(id, req.body);
+        if (todo) {
+            res.status(200).send({ msg: "Details deleted successfully" });
         }
-        else{
-            res.status(404).send({msg:"Details not found"});
+        else {
+            res.status(404).send({ msg: "Details not found" });
         }
     }
-    catch(err){
+    catch (err) {
         res.status(500).send(err.message);
-    }   
+    }
 
 }
