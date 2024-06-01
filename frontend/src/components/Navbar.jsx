@@ -1,4 +1,10 @@
+import React from "react";
+import {useNavigate} from 'react-router-dom';
 function Navbar(){
+  const navigate = useNavigate();
+  const adminpage = () => {
+    navigate('/AdminPage');
+  }
     return(
     <>
   <div className="z-30">
@@ -24,8 +30,8 @@ function Navbar(){
         <option>Location</option>
         <option value="1">Option 1</option>
       </select>
-      <button className="block w-full  text-black font-['Denk_One'] py-2 px-4 focus:outline-none focus:bg-purple-200 bg-purple-400">
-        Admin
+      <button className="font-['Denk_One'] border-b rounded-lg py-1 px-2 bg-purple-400 " onClick={adminpage}>
+          Admin
       </button>
     </div>
   </div>
