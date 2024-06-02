@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 function AdminPage() {
     const [username, setUsername] = useState('');
@@ -30,10 +31,9 @@ function AdminPage() {
             </div>
         );
     };
-
-    const addRestaurant = () => {
-        // Implement add restaurant logic here
-    };
+    const addRestaurant = async () => {
+        // Implement get restaurant by ID logic here
+      };
 
     const getRestaurantById = () => {
         // Implement get restaurant by ID logic here
@@ -61,20 +61,31 @@ function AdminPage() {
                 </div>
             ) : (
                 <div>
-                    <h2>Admin Login</h2>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button onClick={handleLogin}>Login</button>
+                    <Navbar/>
+                    <div className="flex items-center justify-center h-screen">
+                        <div className="w-full max-w-md">
+                        <div className="bg-purple-200 p-8 rounded-lg shadow-md">
+                            <h2 className="text-2xl text-purple-500 mb-6">Admin Login</h2>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="block w-full p-2 mb-4 border border-gray-300 rounded "
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="block w-full p-2 mb-4 border border-gray-300 rounded "
+                            />
+                            <button onClick={handleLogin} className="block w-full py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600 focus:outline-none">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 </div>
             )}
         </div>
