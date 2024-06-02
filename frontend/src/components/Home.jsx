@@ -1,9 +1,7 @@
-<<<<<<< HEAD
+
 import React,{useEffect,useState} from "react";
 import Navbar from "./Navbar";
-=======
-import React,{useState,useEffect} from "react";
->>>>>>> 338c4a4a6ec54ae7f0deabb1145e3b968c6c42c2
+
 import axios from "axios";
 function Home(){
     const [details,setDetails]=useState([]);
