@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .custom-input {
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+    color: #000;
+  }
