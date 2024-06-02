@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
+import Form from './Form';
 
 function AdminPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const [showForm, setShowForm] = useState(false);
 
     const handleLogin = () => {
         if (username === 'admin' && password === 'y2m_admin') {
@@ -22,17 +23,34 @@ function AdminPage() {
 
     const renderAdminFeatures = () => {
         return (
-            <div>
-                <button onClick={addRestaurant}>Add Restaurant</button><br></br>
-                <button onClick={getRestaurantById}>Get Restaurant by ID</button>
-                <button onClick={getAllRestaurants}>Get All Restaurants</button>
-                <button onClick={deleteRestaurant}>Delete Restaurant</button>
-                <button onClick={updateRestaurant}>Update Restaurant Details</button>
-            </div>
+            <div className="flex flex-col items-center justify-center">
+            <button onClick={() => setShowForm(true)} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none">
+              Add Restaurant
+            </button>
+            <button onClick={getRestaurantById} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
+              Get Restaurant by ID
+            </button>
+            <button onClick={getAllRestaurants} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
+              Get All Restaurants
+            </button>
+            <button onClick={deleteRestaurant} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
+              Delete Restaurant
+            </button>
+            <button onClick={updateRestaurant} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
+              Update Restaurant Details
+            </button>
+          </div>
         );
-    };
-    const addRestaurant = async () => {
-        // Implement get restaurant by ID logic here
+      };
+
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+        setShowForm(false); 
+      };
+
+    const addRestaurant = async (event) => {
+        event.preventDefault();
+        setShowForm(false);
       };
 
     const getRestaurantById = () => {
@@ -53,15 +71,19 @@ function AdminPage() {
 
     return (
         <div>
-            {loggedIn ? (
+          {loggedIn? (
+            <div>
+              <h2>Welcome, Admin!</h2>
+              {renderAdminFeatures()}
+              <button onClick={handleLogout} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">Logout</button>
+              {showForm && (
+                  <div className="bg-white p-4 rounded shadow-md">
+                    <Form onSubmit={handleFormSubmit} />
+                  </div>
+              )}
+            </div>
+          ) : (
                 <div>
-                    <h2>Welcome, Admin!</h2>
-                    {renderAdminFeatures()}
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
-            ) : (
-                <div>
-                    <Navbar/>
                     <div className="flex items-center justify-center h-screen">
                         <div className="w-full max-w-md">
                         <div className="bg-purple-200 p-8 rounded-lg shadow-md">
