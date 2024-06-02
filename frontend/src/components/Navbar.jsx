@@ -15,14 +15,16 @@ function Navbar(){
     <div className="flex items-center">
       <select className="block w-full  text-black font-['Denk_One'] py-2 px-4  focus:outline-none focus:bg-purple-200 bg-purple-200">
         <option>Menu</option>
-        <option value="1"></option>
+
+        <option value="1">lunch</option>
         <option value="1">breakfast</option>
       </select>
       <select className="block w-full  text-black font-['Denk_One'] py-2 px-4   focus:outline-none focus:bg-purple-200 bg-purple-200">
         <option>Cuisine</option>
-        <option value="1">Option 1</option>
+        <option value="1">South Indian</option>
+        <option value="1">North Indian</option>
       </select>
-      <select className="block w-full  text-black font-['Denk_One'] py-2 px-4   focus:outline-none bg-purple-200">
+      <select className="block w-full text-black font-['Denk_One'] py-2 px-4 pr-8 focus:outline-none focus:bg-purple-200 bg-purple-200">
         <option>Rating</option>
         <option value="1">Option 1</option>
       </select>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 function AdminPage() {
     const [username, setUsername] = useState('');
@@ -30,10 +31,9 @@ function AdminPage() {
             </div>
         );
     };
-
-    const addRestaurant = () => {
-        // Implement add restaurant logic here
-    };
+    const addRestaurant = async () => {
+        // Implement get restaurant by ID logic here
+      };
 
     const getRestaurantById = () => {
         // Implement get restaurant by ID logic here
@@ -52,35 +52,44 @@ function AdminPage() {
     };
 
     return (
-  <div className="min-h-screen flex items-center justify-center bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
-    {loggedIn ? (
-      <div className="max-w-md w-full space-y-8 bg-purple-400 p-10 rounded-xl text-center">
-        <h2 className="mt-4 text-center text-2xl font-extrabold text-gray-900">Welcome, Admin!</h2>
-        {renderAdminFeatures()}
-        <button onClick={handleLogout} className="mt-5 py-2 px-6 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Logout</button>
-      </div>
-    ) : (
-      <div className="m-w-md w-max space-y-8 bg-purple-200 p-10 rounded-xl shadow-lg">
-        <h2 className="mt-4 text-center text-3xl font-extrabold text-gray-900">AdmiN LogiN</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="mt-5 focus:ring-indigo-500 focus:border-black block w-full shadow-lg sm:text-md border-white rounded-sm bg-white"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-lg sm:text-md border-white rounded-md bg-white"
-        />
-        <button onClick={handleLogin} className="mt-5 py-2 px-6 border border-transparent rounded-md shadow-lg text-sm font-medium text-black bg-purple-200 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Login</button>
-      </div>
-    )}
-  </div>
-);
+        <div>
+            {loggedIn ? (
+                <div>
+                    <h2>Welcome, Admin!</h2>
+                    {renderAdminFeatures()}
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            ) : (
+                <div>
+                    <Navbar/>
+                    <div className="flex items-center justify-center h-screen">
+                        <div className="w-full max-w-md">
+                        <div className="bg-purple-200 p-8 rounded-lg shadow-md">
+                            <h2 className="text-2xl text-purple-500 mb-6">Admin Login</h2>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="block w-full p-2 mb-4 border border-gray-300 rounded "
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="block w-full p-2 mb-4 border border-gray-300 rounded "
+                            />
+                            <button onClick={handleLogin} className="block w-full py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600 focus:outline-none">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default AdminPage;
