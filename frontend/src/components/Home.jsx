@@ -1,6 +1,6 @@
 
 import React,{useEffect,useState} from "react";
-
+import Navbar from "./Navbar";
 import axios from "axios";
 function Home(){
     const [details,setDetails]=useState([]);
@@ -15,6 +15,7 @@ function Home(){
 
       return (
         <>
+        <Navbar/>
         <div className="pt-10">
         <div className="flex bg-purple-200 ">
         <div className="container mx-auto p-4 bg-purple-400 mt-10 ml-25 border-b rounded-lg   mb-10 ">
