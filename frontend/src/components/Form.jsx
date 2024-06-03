@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 const Form = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
+  const [contact, setContact] = useState('');
   const [location, setLocation] = useState('');
   const [rating, setRating] = useState(0);
   const [offers, setOffers] = useState(false);
-  const [cuisine, setCuisine] = useState('');
+  const [cuisines, setCuisine] = useState('');
   const [menu, setMenu] = useState([{ name: '' }]);
   const [errors, setErrors] = useState({});
-  const [isVisible, setIsVisible] = useState(true); // State to manage form visibility
+  const [isVisible, setIsVisible] = useState(true); 
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -21,7 +21,7 @@ const Form = () => {
   };
 
   const handleContactNumberChange = (event) => {
-    setContactNumber(event.target.value);
+    setContact(event.target.value);
   };
 
   const handleLocationChange = (event) => {
@@ -48,7 +48,7 @@ const Form = () => {
 
   const handleMenuChange = (index, event) => {
     const newMenu = [...menu];
-    newMenu[index][event.target.name] = event.target.value;
+    newMenu[index] = event.target.value; // Treat each item in the menu array as a string
     setMenu(newMenu);
   };
 
@@ -61,41 +61,49 @@ const Form = () => {
     setMenu(newMenu);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = {
       name,
       address,
-      contactNumber,
+      contact,
       location,
       rating,
       offers,
-      cuisine,
-      menu,
-    };
-    console.log(formData); // Send the form data to your server or API
+      cuisines,
+      menu, 
+    }; 
+    axios.post('http://localhost:3000/', formData)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   };
 
   const handleClose = () => {
-    setIsVisible(false); // Hide the form when the close button is clicked
+    setIsVisible (false); // Hide the form when the close button is clicked
   };
 
   if (!isVisible) {
-    return null; // Don't render the form if it's not visible
-  }
-
+    return null; 
+  };
+  
+    
   return (
+    
     <form onSubmit={handleSubmit} className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 z-50">
       <div className="relative overflow-hidden custom-container">
+        
+        <div className="bg-purple-300 p-8 rounded-lg w-[40vw]">
         <button
-          type="button"
-          onClick={handleClose}
-          className="absolute top-0 left-0 m-2 text-2xl text-black cursor-pointer"
-        >
-          ×
-        </button>
-        <div className="bg-purple-300 p-8 rounded-lg">
-          <h2 className="text-center text-2xl font-semibold text-black mb-6">
+        type="button"
+        onClick={handleClose}
+        className="absolute top-0 left-0 m-2 text-2xl text-black cursor-pointer">
+        X
+      </button>
+          <h2 className="text-center text-2xl font-extrabold text-black mb-6">
             RESTAURANT DETAILS
           </h2>
           <div className="mb-4">
@@ -121,7 +129,7 @@ const Form = () => {
               type="text"
               className="border rounded px-4 py-2 w-full"
               placeholder="Contact Number"
-              value={contactNumber}
+              value={contact}
               onChange={handleContactNumberChange}
             />
           </div>
@@ -164,27 +172,27 @@ const Form = () => {
           </div>
           <div className="mb-4">
             <div className="overflow-y-auto h-24">
-              {menu.map((dish, index) => (
-                <div key={index} className="flex items-center mb-2">
-                  <label htmlFor={`menu-${index}`} className="mr-2">Menu {index + 1}:</label>
-                  <div className="relative w-full">
-                    <input
-                      type="text"
-                      id={`menu-${index}`}
-                      name="name"
-                      value={dish.name}
-                      onChange={(event) => handleMenuChange(index, event)}
-                      className="w-full bg-gray-100 border border-gray-300 text-black rounded py-2 px-4"
-                    />
-                    <span
-                      onClick={() => handleRemoveMenu(index)}
-                      className="absolute top-0 right-0 m-2 text-2xl text-black cursor-pointer"
-                    >
-                      ×
-                    </span>
-                  </div>
-                </div>
-              ))}
+            {menu.map((dish, index) => (
+            <div key={index} className="flex items-center mb-2">
+              <label htmlFor={`menu-${index}`} className="mr-2">Menu {index + 1}:</label>
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  id={`menu-${index}`}
+                  name="name"
+                  value={dish} // Treat dish as a string, not an object
+                  onChange={(event) => handleMenuChange(index, event)}
+                  className="w-full bg-gray-100 border border-gray-300 text-black rounded py-2 px-4"
+                />
+                <span
+                  onClick={() => handleRemoveMenu(index)}
+                  className="absolute top-0 right-0 m-2 text-2xl text-black cursor-pointer"
+                >
+                  ×
+                </span>
+              </div>
+            </div>
+          ))}
             </div>
             <button
               type="button"
@@ -197,7 +205,7 @@ const Form = () => {
           <div className="mb-4">
             <select
               className="border rounded px-4 py-2 w-full"
-              value={cuisine}
+              value={cuisines}
               onChange={handleCuisineChange}
             >
               <option value="" disabled>
@@ -211,8 +219,7 @@ const Form = () => {
           <div className="mt-6 flex justify-end">
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded"
-              type="submit"
-            >
+              type="submit">
               Submit
             </button>
           </div>
