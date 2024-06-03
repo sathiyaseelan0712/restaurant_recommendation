@@ -27,12 +27,6 @@ function AdminPage() {
             <button onClick={() => setShowForm(true)} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none">
               Add Restaurant
             </button>
-            <button onClick={getRestaurantById} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
-              Get Restaurant by ID
-            </button>
-            <button onClick={getAllRestaurants} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
-              Get All Restaurants
-            </button>
             <button onClick={deleteRestaurant} className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none mt-4">
               Delete Restaurant
             </button>
@@ -49,8 +43,7 @@ function AdminPage() {
       };
 
     const addRestaurant = async (event) => {
-        event.preventDefault();
-        setShowForm(false);
+        // Implement get restaurant by ID logic here
       };
 
     const getRestaurantById = () => {
