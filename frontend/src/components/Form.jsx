@@ -180,7 +180,7 @@ const Form = () => {
                   type="text"
                   id={`menu-${index}`}
                   name="name"
-                  value={dish} // Treat dish as a string, not an object
+                  placeholder=''
                   onChange={(event) => handleMenuChange(index, event)}
                   className="w-full bg-gray-100 border border-gray-300 text-black rounded py-2 px-4"
                 />
@@ -211,9 +211,12 @@ const Form = () => {
               <option value="" disabled>
                 Cuisine
               </option>
-              <option value="northindian">North Indian</option>
-              <option value="southindian">South Indian</option>
-              <option value="chinese">Chinese</option>
+              <option value="South Indian">South Indian</option>
+              <option value="North Indian">North Indian</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Korean">Korean</option>
+              <option value="Continental">Continental</option>
             </select>
           </div>
           <div className="mt-6 flex justify-end">
