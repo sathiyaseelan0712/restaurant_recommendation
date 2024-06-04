@@ -48,7 +48,7 @@ const Form = () => {
 
   const handleMenuChange = (index, event) => {
     const newMenu = [...menu];
-    newMenu[index] = event.target.value; // Treat each item in the menu array as a string
+    newMenu[index] = event.target.value;
     setMenu(newMenu);
   };
 

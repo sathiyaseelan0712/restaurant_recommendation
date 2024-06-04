@@ -1,5 +1,5 @@
 const Details = require('../models/restaraunt');
-
+const Data = require('../models/user');
 module.exports.filterrestaraunt = async (req, res) => {
     console.log("request body is", req.body);
     try {
@@ -69,6 +69,25 @@ module.exports.addrestaraunt = async (req, res) => {
     }
     catch (err) {
         res.status(500).send(err.message);
+    }
+}
+module.exports.adduser = async (req, res) => {
+    try {
+        const todo = new Data(req.body);
+        await todo.save();
+        res.status(200).send({ msg: "user added successfully" });
+    }
+    catch (err) {
+        res.status(500).send(err.message);
+    }
+}
+module.exports.getAlluser= async (req, res) => {
+    try {
+        const todos = await Data.find({});
+        res.status(200).send(todos);
+    }
+    catch (err) {
+        res.status(500).json(err.message);
     }
 }
 
