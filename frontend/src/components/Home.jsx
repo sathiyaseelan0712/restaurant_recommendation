@@ -3,7 +3,10 @@ import Mainnavbar from "./Mainnavbar";
 import axios from "axios";
 import { Carousel } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from "./Navbar";
+import Image1 from "./Photos/image1.png";
+import Image2 from "./Photos/image2.png";
+import Image3 from "./Photos/image3.png";
+import Image4 from "./Photos/image4.png";
 
 function Home() {
   const [details, setDetails] = useState([]);
@@ -12,10 +15,10 @@ function Home() {
   const [rating, setRating] = useState("");
   const [location, setLocation] = useState("");
   const [carouselImages] = useState([
-    "https://imgs.search.brave.com/QBk0PDvLUKqpRhUXk_lBgxw58IPrXwfyAex3uCkFFYw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU3/NTY1MTgyL3Bob3Rv/L2ZpbmUtdGFibGUt/c2V0dGluZy1pbi1h/LXJlc3RhdXJhbnQu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXlTa2tZMjc4RVBI/MlZyc3JjbmIwd2Vt/d0hGc3lrMTZncjQ4/WlBZX0tudVE9",
-    "https://imgs.search.brave.com/YZmrzKWFh6hZlY1wKP9ip6W_4Xq4E8XR9HKA7tz92HM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTcx/MjI1MDQzL3Bob3Rv/L291dGRvb3ItcmVz/dGF1cmFudC10ZXJy/YWNlLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz13ZGppemlE/MlNMVkhCY0lIQXRf/eG5vZElfSnlOcGhU/cVhsVUk0VUtrbjVR/PQ",
-    "https://imgs.search.brave.com/OU3ym5gqYPTePa_oNon-PHgJNSHl6lA8voWqbps41E8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTgy/OTI0MDYwMC9waG90/by9oYXZpbmctYnJ1/bmNoLndlYnA_Yj0x/JnM9MTcwNjY3YSZ3/PTAmaz0yMCZjPUIz/VFdBZzBIZEJSUkMw/TktFbDEwcFFqeS1I/ZHI0QlNfS0tua2x6/UC15YVU9",
-    "https://imgs.search.brave.com/2E8Lw12HJLCPn5lkKigqhOAV6SmROnHlAFYKjyiUfDs/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9m/cmVuY2gtcmVzdGF1/cmFudC1zY2VuZS13/aXRoLW1lbnUtYm9h/cmRfMTE0Ny00NDgu/anBnP3NpemU9NjI2/JmV4dD1qcGc",
+    Image1,
+    Image2,
+    Image3,
+    Image4,
   ]);
 
   async function getRestaraunt() {
@@ -92,7 +95,7 @@ function Home() {
           </div>
 
           <div className="w-3/5">
-            <Carousel>
+            <Carousel interval={3000}>
               {carouselImages.map((image, index) => (
                 <Carousel.Item key={index}>
                   <img
