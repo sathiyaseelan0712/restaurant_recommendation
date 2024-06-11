@@ -1,24 +1,41 @@
 import React, { useState } from 'react';
 import Form from './Form';
-
+import axios from 'axios';
 function AdminPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [IsLoggedIn, setIsLoggedIn] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const [emai, setEmail] = useState('');
 
     const handleLogin = () => {
+      try{
         if (username === 'admin' && password === '123456789') {
             setLoggedIn(true);
         } else {
-            alert('Invalid username or password');
+          alert('Invalid username or password');
         }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     const handleLogout = () => {
-        setLoggedIn(false);
+        setIsLoggedIn(false);
         setUsername('');
         setPassword('');
+    };
+    const handleRegister = async () => {
+      try {
+        const response = await axios.post('http://localhost:3000/register', { username, password, email });
+        if (response.data.success) {
+          setIsLoggedIn(true);
+        } else {
+          alert('Registration failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     const renderAdminFeatures = () => {
@@ -64,7 +81,7 @@ function AdminPage() {
 
     return (
         <div>
-          {loggedIn? (
+          {IsLoggedIn? (
             <div>
               <h2>Welcome, Admin!</h2>
               {renderAdminFeatures()}
@@ -98,6 +115,7 @@ function AdminPage() {
                             <button onClick={handleLogin} className="block w-full py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600 focus:outline-none">
                                 Login
                             </button>
+                            <button onClick={handleRegister}>Register</button>
                         </div>
                     </div>
                 </div>
