@@ -1,5 +1,5 @@
 const Details = require('../models/restaraunt');
-const Data = require('../models/user');
+const User = require('../models/user');
 module.exports.filterrestaraunt = async (req, res) => {
     console.log("request body is", req.body);
     try {
@@ -73,23 +73,42 @@ module.exports.addrestaraunt = async (req, res) => {
 }
 module.exports.adduser = async (req, res) => {
     try {
-        const todo = new Data(req.body);
-        await todo.save();
-        res.status(200).send({ msg: "user added successfully" });
-    }
-    catch (err) {
+        const { username, email, password } = req.body;
+        const newUser = new User({ username, email, password });
+        await newUser.save();
+        res.status(200).send({ msg: "User added successfully" });
+    } catch (err) {
         res.status(500).send(err.message);
     }
-}
-module.exports.getAlluser= async (req, res) => {
+};
+
+module.exports.getAlluser = async (req, res) => {
+    const { username, email, password } = req.body; 
     try {
-        const todos = await Data.find({});
-        res.status(200).send(todos);
+        let user;
+        if (username) {
+            user = await User.findOne({ username });
+        } else if (email) {
+            user = await User.findOne({ email });
+        } else {
+            return res.status(400).send({ message: "Username or email is required" });
+        }
+
+        if (!user) {
+            return res.status(404).send({ message: "User not found" });
+        }
+        const isPasswordValid = await user.comparePassword(password);
+        if (!isPasswordValid) {
+            return res.status(401).send({ message: "Invalid password" });
+        }
+
+        res.status(200).send(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: "Internal server error" });
     }
-    catch (err) {
-        res.status(500).json(err.message);
-    }
-}
+};
+
 
 module.exports.updaterestaraunt = async (req, res) => {
     const { id } = req.params;

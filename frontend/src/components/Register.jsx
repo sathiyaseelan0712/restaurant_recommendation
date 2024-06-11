@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,12 +7,10 @@ function CreateAccount(){
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const id = uuidv4(); // Generate a unique ID
-
+        const id = uuidv4(); 
         try {
             const response = await axios.post('http://localhost:3000/register', {
                 id,
@@ -19,17 +18,15 @@ function CreateAccount(){
                 email,
                 password,
             });
-
             console.log(response.data);
-
-            // Send the ID to the user's email
-            // This is just a placeholder. You'll need to replace this with your actual email sending code.
-            sendEmail(email, `Your unique ID is ${id}`);
+            alert('Account created successfully!');
+            if(response.success){
+                navigate('/Adminpage');
+            }
         } catch (error) {
             console.error(error);
         }
     };
-
     return (
         <div className="flex items-center justify-center min-h-screen px-4 sm:px-0">
             <div className="w-full max-w-md">
