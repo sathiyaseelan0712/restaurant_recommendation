@@ -8,7 +8,7 @@ function AdminPage() {
     const [showForm, setShowForm] = useState(false);
 
     const handleLogin = () => {
-        if (username === 'admin' && password === 'y2m_admin') {
+        if (username === 'admin' && password === '123456789') {
             setLoggedIn(true);
         } else {
             alert('Invalid username or password');
