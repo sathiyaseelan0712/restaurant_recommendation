@@ -8,7 +8,9 @@ const{
     updaterestaraunt,
     filterrestaraunt,
     adduser,
-    getAlluser
+    getAlluser,
+    contact,
+    getcontact
 
 } = require('../controller/restaraunt');
 router.get('/',getAllrestaraunt)
@@ -19,4 +21,6 @@ router.post('/user/login',getAlluser)
 router.put('/:id',updaterestaraunt)
 router.delete('/:id',deleterestaraunt)
 router.post('/restaraunts',filterrestaraunt)
+router.post('/contact',contact)
+router.get('/allcontact',getcontact)
 module.exports = router;

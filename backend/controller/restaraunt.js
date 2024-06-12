@@ -1,5 +1,6 @@
 const Details = require('../models/restaraunt');
 const User = require('../models/user');
+const Cont = require('../models/contact');
 module.exports.filterrestaraunt = async (req, res) => {
     console.log("request body is", req.body);
     try {
@@ -34,6 +35,15 @@ module.exports.filterrestaraunt = async (req, res) => {
         res.json({ success: false, error: error.message });
     }
 };
+module.exports.getcontact = async (req, res) => {
+    try {  
+        const todos = await Cont.find({});
+        res.status(200).send(todos);
+    }
+    catch (err) {
+        res.status(500).json(err.message);
+    }
+}
 
 module.exports.getAllrestaraunt = async (req, res) => {
     try {
@@ -81,7 +91,16 @@ module.exports.adduser = async (req, res) => {
         res.status(500).send(err.message);
     }
 };
-
+module.exports.contact = async (req, res) => {
+    try {
+        const { name, email, feedback } = req.body;
+        const newUser = new Cont({ name, email, feedback });
+        await newUser.save();
+        res.status(200).send({ msg: "message added successfully" });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+};
 module.exports.getAlluser = async (req, res) => {
     const { username, email, password } = req.body; 
     try {
