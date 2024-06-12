@@ -7,7 +7,9 @@ import Image1 from "./Photos/image1.png";
 import Image2 from "./Photos/image2.png";
 import Image3 from "./Photos/image3.png";
 import Image4 from "./Photos/image4.png";
-
+import CuisineImage from './Photos/cuisine.png';
+import RatingImage from './Photos/rating.png';
+import LocationImage from './Photos/location.png';
 function Home() {
   const [details, setDetails] = useState([]);
   const [search, setSearch] = useState("");
@@ -59,7 +61,7 @@ function Home() {
             <div className="flex flex-col items-center space-y-8">
               <div className="flex flex-col items-center relative pt-20">
                 <img
-                  src="https://imgs.search.brave.com/eGPYI2Pk0gfJnUWo3JM3a5SITBSerBlmuwYC20FZijY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jb25x/dWVyaW5nY3Vpc2lu/ZS5jb20vaW1hZ2Vz/L2hvbWVib3gtY2F0/ZXJpbmcuanBn"
+                  src={CuisineImage}
                   alt="Cuisine"
                   className="w-24 h-24 rounded-full cursor-pointer border-4 border-white shadow-lg"
                 />
@@ -78,7 +80,7 @@ function Home() {
               </div>
               <div className="flex flex-col items-center relative">
                 <img
-                  src="https://imgs.search.brave.com/PUwKFnEpAlCLR8KRTSwMbiyXv5rNR-L-yUF5_hmeIyQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTA0/NDc0Mzk1Mi9waG90/by9yZXZpZXctcmF0/aW5nLWNvbmNlcHQu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXNQUFJLbTNpeDdQ/TjNBNTVfU1FrLWQx/VTRfUEVXdnNEaWd4/QkhqLUlXdGc9"
+                  src={RatingImage}
                   alt="Rating"
                   className="w-24 h-24 rounded-full cursor-pointer border-4 border-white shadow-lg"
                 />
@@ -116,7 +118,7 @@ function Home() {
             <div className="flex flex-col items-center">
               <div className="flex flex-col items-center relative">
                 <img
-                  src="https://imgs.search.brave.com/iYiJ6e1lgwldFIrYDRdJyns1aOQccZHdrMncMHqHY-4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE4/OTA2NDM0Ni9waG90/by9jaXR5LW1hcC13/aXRoLXBpbi1wb2lu/dGVycy0zZC1yZW5k/ZXJpbmctaW1hZ2Uu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVRyWkhUOFI3RU9y/UXY0dFJwZE9VVnVP/azhLU0VhemRzXzhX/WlI5MWZWdFU9"
+                  src={LocationImage}
                   alt="Location"
                   className="w-24 h-24 rounded-full cursor-pointer border-4 border-white shadow-lg"
                 />
