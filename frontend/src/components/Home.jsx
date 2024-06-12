@@ -14,12 +14,8 @@ function Home() {
   const [cuisine, setCuisine] = useState("");
   const [rating, setRating] = useState("");
   const [location, setLocation] = useState("");
-  const [carouselImages] = useState([
-    Image1,
-    Image2,
-    Image3,
-    Image4,
-  ]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [carouselImages] = useState([Image1, Image2, Image3, Image4]);
 
   async function getRestaurant() {
     const res = await axios.get("http://localhost:3000/");
@@ -31,21 +27,25 @@ function Home() {
     getRestaurant();
   }, []);
 
+  useEffect(() => {
+    const filtered = details.filter((item) => {
+      const matchesCuisine = cuisine === "" || (item.cuisines && item.cuisines.includes(cuisine));
+      return (
+        item.name.toLowerCase().includes(search.toLowerCase()) &&
+        matchesCuisine &&
+        (rating === "" || item.rating >= parseInt(rating)) &&
+        (location === "" || item.location === location)
+      );
+    });
+    setFilteredData(filtered);
+  }, [search, cuisine, rating, location, details]);
+
   const handleApply = (searchTerm, selectedCuisine, selectedRating, selectedLocation) => {
     setSearch(searchTerm);
     setCuisine(selectedCuisine);
     setRating(selectedRating);
     setLocation(selectedLocation);
   };
-
-  const filteredData = details.filter((item) => {
-    return (
-      item.name.toLowerCase().includes(search.toLowerCase()) &&
-      (cuisine === "" || item.cuisine === cuisine) &&
-      (rating === "" || item.rating >= parseInt(rating)) &&
-      (location === "" || item.location === location)
-    );
-  });
 
   return (
     <>
@@ -159,7 +159,6 @@ function Home() {
             <p className="text-white">No restaurants found.</p>
           )}
         </div>
-
       </div>
     </>
   );

@@ -16,7 +16,7 @@ function Mainnavbar({ onApply }) {
   };
 
   const handleApplyClick = () => {
-    onApply(search, "", "", ""); // Passing empty strings for cuisine, rating, and location
+    onApply(search, "", "", ""); 
   };
 
   return (
